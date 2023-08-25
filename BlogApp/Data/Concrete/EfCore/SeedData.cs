@@ -52,6 +52,7 @@ namespace BlogApp.Data.Concrete.EfCore
                             Content = "Asp.net core dersleri",
                             IsActive = true,
                             PublishedOn = DateTime.Now.AddDays(-10),
+                            Image = "1.jpg",
                             Tags = context.Tags.Take(3).ToList(),
                             UserId = 1,
                         },
@@ -61,6 +62,7 @@ namespace BlogApp.Data.Concrete.EfCore
                                 Content = "Php dersleri",
                                 IsActive = true,
                                 PublishedOn = DateTime.Now.AddDays(-20),
+                                Image = "2.jpg",
                                 Tags = context.Tags.Take(2).ToList(),
                                 UserId = 2,
                             },
@@ -70,6 +72,7 @@ namespace BlogApp.Data.Concrete.EfCore
                                 Content = "Django dersleri",
                                 IsActive = true,
                                 PublishedOn = DateTime.Now.AddDays(-15),
+                                Image = "3.jpg",
                                 Tags = context.Tags.Take(1).ToList(),
                                 UserId = 3,
                             }
