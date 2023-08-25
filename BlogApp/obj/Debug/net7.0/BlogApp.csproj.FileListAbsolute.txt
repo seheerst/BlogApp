@@ -61,5 +61,7 @@ C:\Users\seherst\Desktop\BlogApp\BlogApp\obj\Debug\net7.0\refint\BlogApp.dll
 C:\Users\seherst\Desktop\BlogApp\BlogApp\obj\Debug\net7.0\BlogApp.pdb
 C:\Users\seherst\Desktop\BlogApp\BlogApp\obj\Debug\net7.0\BlogApp.genruntimeconfig.cache
 C:\Users\seherst\Desktop\BlogApp\BlogApp\obj\Debug\net7.0\ref\BlogApp.dll
-C:\Users\seherst\Desktop\BlogApp\blogApp\bin\Debug\net7.0\MySqlConnector.dll
-C:\Users\seherst\Desktop\BlogApp\blogApp\bin\Debug\net7.0\Pomelo.EntityFrameworkCore.MySql.dll
+C:\Users\seherst\Desktop\BlogApp\BlogApp\obj\Debug\net7.0\BlogApp.RazorAssemblyInfo.cache
+C:\Users\seherst\Desktop\BlogApp\BlogApp\obj\Debug\net7.0\BlogApp.RazorAssemblyInfo.cs
+C:\Users\seherst\Desktop\BlogApp\blogapp\bin\Debug\net7.0\libman.json
+C:\Users\seherst\Desktop\BlogApp\blogapp\bin\Debug\net7.0\BlogApp.staticwebassets.runtime.json

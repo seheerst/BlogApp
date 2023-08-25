@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\seherst\\Desktop\\BlogApp\\BlogApp\\BlogApp.csproj": {}
+    "C:\\Users\\seherst\\Desktop\\BlogApp\\blogapp\\BlogApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\seherst\\Desktop\\BlogApp\\BlogApp\\BlogApp.csproj": {
+    "C:\\Users\\seherst\\Desktop\\BlogApp\\blogapp\\BlogApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\seherst\\Desktop\\BlogApp\\BlogApp\\BlogApp.csproj",
+        "projectUniqueName": "C:\\Users\\seherst\\Desktop\\BlogApp\\blogapp\\BlogApp.csproj",
         "projectName": "BlogApp",
-        "projectPath": "C:\\Users\\seherst\\Desktop\\BlogApp\\BlogApp\\BlogApp.csproj",
+        "projectPath": "C:\\Users\\seherst\\Desktop\\BlogApp\\blogapp\\BlogApp.csproj",
         "packagesPath": "C:\\Users\\seherst\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\seherst\\Desktop\\BlogApp\\BlogApp\\obj\\",
+        "outputPath": "C:\\Users\\seherst\\Desktop\\BlogApp\\blogapp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -53,10 +53,6 @@
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[7.0.10, )"
-            },
-            "Pomelo.EntityFrameworkCore.MySql": {
-              "target": "Package",
-              "version": "[7.0.0, )"
             }
           },
           "imports": [
