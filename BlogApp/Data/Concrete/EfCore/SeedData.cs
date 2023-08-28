@@ -22,12 +22,12 @@ namespace BlogApp.Data.Concrete.EfCore
                 if (!context.Tags.Any())
                 {
                     context.Tags.AddRange(
-                        new Entity.Tag { Text = "web programlama" },
-                        new Entity.Tag { Text = "backend" },
-                        new Entity.Tag { Text = "mobil uygulamalar" },
-                        new Entity.Tag { Text = "frontend" },
-                        new Entity.Tag { Text = "fullstack" },
-                        new Entity.Tag { Text = "php" }
+                        new Entity.Tag { Text = "Doğal yaşam" },
+                        new Entity.Tag { Text = "Sanat", Url = "Sanat"},
+                        new Entity.Tag { Text = "Kültür gezileri" , Url = "Kültür gezileri"},
+                        new Entity.Tag { Text = "Çalışma" , Url = "Çalışma"},
+                        new Entity.Tag { Text = "Eğlence" , Url = "Eğlence"},
+                        new Entity.Tag { Text = "Seyahat", Url = "Seyahat"}
                     );
                     context.SaveChanges();
                 }
@@ -48,8 +48,9 @@ namespace BlogApp.Data.Concrete.EfCore
                     context.Posts.AddRange(
                         new Entity.Post
                         {
-                            Title = "Asp.net core",
-                            Content = "Asp.net core dersleri",
+                            Title = "Sokaklar",
+                            Content = "seyahatler eğlencelidir",
+                            Url = "sokaklar",
                             IsActive = true,
                             PublishedOn = DateTime.Now.AddDays(-10),
                             Image = "1.jpg",
@@ -58,8 +59,9 @@ namespace BlogApp.Data.Concrete.EfCore
                         },
                             new Entity.Post
                             {
-                                Title = "Php",
-                                Content = "Php dersleri",
+                                Title = "Çini işçiliği",
+                                Content = "sanatla uğraşmak",
+                                Url = "cini-isciliği",
                                 IsActive = true,
                                 PublishedOn = DateTime.Now.AddDays(-20),
                                 Image = "2.jpg",
@@ -68,14 +70,49 @@ namespace BlogApp.Data.Concrete.EfCore
                             },
                             new Entity.Post
                             {
-                                Title = "Django",
-                                Content = "Django dersleri",
+                                Title = "Papağanlar",
+                                Content = "Hayvanlae alemi",
+                                Url = "papağanlar",
                                 IsActive = true,
                                 PublishedOn = DateTime.Now.AddDays(-15),
                                 Image = "3.jpg",
                                 Tags = context.Tags.Take(1).ToList(),
                                 UserId = 3,
-                            }
+                            },
+                    new Entity.Post
+                        {
+                            Title = "Work",
+                            Content = "pazartesi sendromu",
+                            Url = "work",
+                            IsActive = true,
+                            PublishedOn = DateTime.Now.AddDays(-5),
+                            Image = "3.jpg",
+                            Tags = context.Tags.Take(1).ToList(),
+                            UserId = 3,
+                        },
+                    new Entity.Post
+                        {
+                            Title = "eğitim",
+                            Content = "aktivite",
+                            Url = "eğitim",
+                            IsActive = true,
+                            PublishedOn = DateTime.Now.AddDays(-1),
+                            Image = "2.jpg",
+                            Tags = context.Tags.Take(1).ToList(),
+                            UserId = 1,
+                        },
+                        
+                    new Entity.Post
+                        {
+                            Title = "aşçılık",
+                            Content = "yemek tarifleri",
+                            Url = "aşçılık",
+                            IsActive = true,
+                            PublishedOn = DateTime.Now.AddDays(-28),
+                            Image = "2.jpg",
+                            Tags = context.Tags.Take(1).ToList(),
+                            UserId = 2,
+                        }
                     );
                     context.SaveChanges();
 
