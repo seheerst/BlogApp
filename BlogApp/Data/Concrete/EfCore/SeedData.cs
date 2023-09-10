@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BlogApp.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace BlogApp.Data.Concrete.EfCore
@@ -22,12 +23,11 @@ namespace BlogApp.Data.Concrete.EfCore
                 if (!context.Tags.Any())
                 {
                     context.Tags.AddRange(
-                        new Entity.Tag { Text = "Doğal yaşam" },
-                        new Entity.Tag { Text = "Sanat", Url = "Sanat"},
-                        new Entity.Tag { Text = "Kültür gezileri" , Url = "Kültür gezileri"},
-                        new Entity.Tag { Text = "Çalışma" , Url = "Çalışma"},
-                        new Entity.Tag { Text = "Eğlence" , Url = "Eğlence"},
-                        new Entity.Tag { Text = "Seyahat", Url = "Seyahat"}
+                        new Entity.Tag { Text = "Doğal yaşam", Url = "dogal-yasam", Color = TagColors.primary.ToString()},
+                        new Entity.Tag { Text = "Sanat", Url = "Sanat", Color = TagColors.secondary.ToString()},
+                        new Entity.Tag { Text = "Çalışma" , Url = "Çalışma", Color = TagColors.danger.ToString()},
+                        new Entity.Tag { Text = "Eğlence" , Url = "Eğlence", Color = TagColors.success.ToString()},
+                        new Entity.Tag { Text = "Seyahat", Url = "Seyahat", Color = TagColors.warning.ToString()}
                     );
                     context.SaveChanges();
                 }
@@ -35,9 +35,9 @@ namespace BlogApp.Data.Concrete.EfCore
                 if (!context.Users.Any())
                 {
                     context.Users.AddRange(
-                        new Entity.User { Name = "seherselin" },
-                        new Entity.User { Name = "sadikturan" },
-                        new Entity.User { Name = "aliyilmaz" }
+                        new Entity.User { Name = "seherselin", Image = "p2.jpg"},
+                        new Entity.User { Name = "sadikturan" , Image = "p1.jpg"},
+                        new Entity.User { Name = "aliyilmaz", Image = "p2.jpg"}
 
                     );
                     context.SaveChanges();
@@ -67,6 +67,21 @@ namespace BlogApp.Data.Concrete.EfCore
                                 Image = "2.jpg",
                                 Tags = context.Tags.Take(2).ToList(),
                                 UserId = 2,
+                                Comments = new List<Comment>
+                                {
+                                    new Comment
+                                    {
+                                        Text = "comment",
+                                        PublishedOn = new DateTime(),
+                                        UserId = 1,
+                                    },
+                                    new Comment
+                                    {
+                                        Text = "comment",
+                                        PublishedOn = new DateTime(),
+                                        UserId = 2,
+                                    }
+                                }
                             },
                             new Entity.Post
                             {
