@@ -8,9 +8,8 @@
                 @foreach (var tag in Model.Tags)
                 {
                     <a href="/posts/tag/@tag.Url" class="badge bg-@tag.Color bg-opacity-25 text-@tag.Color mb-2 fw-bold">@tag.Text</a>
-                 
                 }
-               
+
 
             </div>
             <img src="~/img/@Model.Image" alt="" class="img-fluid rounded">
@@ -19,27 +18,29 @@
         <div class="bg-white mt-3">
             <div class="card-border-0">
                 <div class="card-header mx-3">
-                    <h4 class="pt-3">@Model.Comments.Count() adet yorum var</h4>
+                    <h4 class="pt-3"><span id="commentCount">@Model.Comments.Count() </span> adet yorum var</h4>
                 </div>
                 <div class="card-body">
-                    @foreach (var comment in Model.Comments)
-                    {
-                        <div class="my-4 mx-4 d-flex">
-                            <img src="/img/@comment.User.Image" alt="" class="avatar rounded-circle float-start me-3">
-                            <div>
-                                <div class="mb-2">
-                                    <h6>@comment.User.Name</h6>
+                    <div id="comments">
+                        @foreach (var comment in Model.Comments)
+                        {
+                            <div class="mt-4 mx-4 d-flex">
+                                <img src="/img/@comment.User.Image" alt="" class="avatar rounded-circle float-start me-3">
+                                <div>
+                                    <div class="mb-2 d-flex">
+                                        <h6 class="me-2">@comment.User.Name</h6>
+                                        <small>@comment.PublishedOn</small>
+                                    </div>
+                                    <p >@comment.Text</p>
                                 </div>
-                            <span>@comment.PublishedOn</span>
                             </div>
-                        </div>
-                        <p class="mx-5">@comment.Text</p>
-                    }
+                        }
+                    </div>
                     <hr class="my-4">
                     <div class="px-4 pb-3">
                         <h4 class="mb-3">Yorum Ekle</h4>
                         <form method="post" action="/posts/AddComment">
-                            <input type="hidden" name="PostId" value="@Model.PostId">
+                            <input type="hidden" id="PostId" name="PostId" value="@Model.PostId">
                             <div class="mb-3">
                                 <label for="UserName" class="form-label">Kullanıcı Adı</label>
                                 <input type="text" name="UserName" id="UserName" class="form-control">
@@ -49,7 +50,7 @@
                                 <textarea rows="3" type="text" name="Text" id="Text" class="form-control"></textarea>
                             </div>
                             <div class="mb-3">
-                                <button type="submit" class="btn btn-outline-danger mt-3">Gönder</button>
+                                <button type="submit" id="btnYorumKayit" class="btn btn-outline-danger mt-3">Gönder</button>
                             </div>
                         </form>
                     </div>
@@ -64,3 +65,47 @@
 
     </div>
 </div>
+
+@section Scripts
+{
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script type="text/javascript">
+    $(document).ready(function (){
+       $("#btnYorumKayit").click(function (){
+           $.ajax({
+           type: 'POST',
+           url: '@Url.Action("AddComment")',
+           dataType: 'json',
+           data:{
+               PostId: $('#PostId').val(),
+               UserName: $('#UserName').val(),
+               Text: $('#Text').val(),
+           },
+           success: function (comment){
+               var date = new Date(comment.publishedOn);
+               console.log(comment);
+              $('#comments').append(`
+              <div class="mt-4 mx-4 d-flex">
+                     <img src="/img/${comment.image}" alt="" class="avatar rounded-circle float-start me-3">
+                     <div>
+                         <div class="mb-2 d-flex">
+                             <h6 class="me-2">${comment.userName}</h6>
+                             <small>${date.toLocaleDateString()}</small>
+                         </div>
+                         <p >${comment.text}</p>
+                     </div>
+              </div>
+              `);
+            $('#UserName').val('');
+            $('#Text').val('');
+            
+            var adet = parseInt( $('#commentCount').text() );
+            $('#commentCount').text(adet + 1);
+           }
+           });
+           return false;
+       });
+        
+    });
+    </script>
+}
