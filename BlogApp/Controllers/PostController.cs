@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using BlogApp.Data.Abstract;
 using BlogApp.Entity;
 using BlogApp.Models;
@@ -41,27 +42,27 @@ namespace BlogApp.Controllers
                 .FirstOrDefaultAsync(p=> p.Url== url));
         }
 
-        public JsonResult AddComment(int PostId, string UserName, string Text)
+        public JsonResult AddComment(int PostId, string Text)
         {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var userName = User.FindFirstValue(ClaimTypes.Name);
+            var avatar = User.FindFirstValue(ClaimTypes.UserData);
             var entity = new Comment
             {
                 Text = Text,
                 PublishedOn = DateTime.Now,
                 PostId = PostId,
-                User = new User
-                {
-                    Name = UserName,
-                    Image = "avatar.jpg"
-                }
+                UserId = int.Parse(userId ?? ""),
+                
             };
             _commentRepository.CreateComment(entity);
 
             return Json(new
             {
-                UserName,
+                userName,
                 Text,
                 entity.PublishedOn,
-                entity.User.Image
+                avatar
             });
         }
 
