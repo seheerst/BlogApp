@@ -21,6 +21,10 @@ namespace BlogApp.Controllers
         [HttpGet]
         public IActionResult Login()
         {
+            if (User.Identity.IsAuthenticated)
+            {
+                return RedirectToAction("Index", "Post");
+            }
             return View();
         }
         
@@ -37,7 +41,7 @@ namespace BlogApp.Controllers
                     userClaims.Add(new Claim(ClaimTypes.NameIdentifier, isUser.UserId.ToString()));
                     userClaims.Add(new Claim(ClaimTypes.Name, isUser.UserName ?? ""));
                     userClaims.Add(new Claim(ClaimTypes.GivenName, isUser.Name ?? ""));
-
+                    userClaims.Add(new Claim(ClaimTypes.UserData, isUser.Image ?? "avatar.jpg"));
 
                     if (isUser.Email == "info@seherselin.com")
                     {
@@ -74,6 +78,41 @@ namespace BlogApp.Controllers
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Register()
+        {
+           
+            return View();
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> Register( RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await _userRepository.Users.FirstOrDefaultAsync(x => x.UserName == model.UserName || x.Email == model.Email);
+                if (user == null)
+                {
+                    _userRepository.CreateUser(new User
+                    {
+                        UserName = model.UserName,
+                        Name = model.Name,
+                        Email = model.Email,
+                        Password = model.Password,
+                        Image = "avatar.jpg"
+                    });
+                    return RedirectToAction("Login");
+                } 
+                else
+                {
+                    ModelState.AddModelError("", "Kullanıcı adı veya email kullanımda");
+                }
+                
+            }
+          
+            return View(model);
         }
 
 
