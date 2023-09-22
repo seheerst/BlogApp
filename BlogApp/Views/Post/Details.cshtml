@@ -36,24 +36,32 @@
                             </div>
                         }
                     </div>
-                    <hr class="my-4">
-                    <div class="px-4 pb-3">
-                        <h4 class="mb-3">Yorum Ekle</h4>
-                        <form method="post" action="/posts/AddComment">
-                            <input type="hidden" id="PostId" name="PostId" value="@Model.PostId">
-                            <div class="mb-3">
-                                <label for="UserName" class="form-label">Kullanıcı Adı</label>
-                                <input type="text" name="UserName" id="UserName" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label for="Text" class="form-label">Yorum</label>
-                                <textarea rows="3" type="text" name="Text" id="Text" class="form-control"></textarea>
-                            </div>
-                            <div class="mb-3">
-                                <button type="submit" id="btnYorumKayit" class="btn btn-outline-danger mt-3">Gönder</button>
-                            </div>
-                        </form>
-                    </div>
+
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <hr class="my-4">
+                        <div class="px-4 pb-3">
+                            <h4 class="mb-3">Yorum Ekle</h4>
+                            <form method="post" action="/posts/AddComment">
+                                <input type="hidden" id="PostId" name="PostId" value="@Model.PostId">
+                                <div class="mb-3">
+                                    <label for="Text" class="form-label">Yorum</label>
+                                    <textarea rows="3" type="text" name="Text" id="Text" class="form-control"></textarea>
+                                </div>
+                                <div class="mb-3">
+                                    <button type="submit" id="btnYorumKayit" class="btn btn-outline-danger mt-3">Gönder</button>
+                                </div>
+                            </form>
+                        </div>
+                    }
+                    else
+                    {
+                        <hr class="my-4">
+                        <div class="mx-5 my-3">
+                            <p> Yorum yapmak için <a asp-action="login" asp-controller="users"> giriş yapın</a></p>
+                        </div> 
+                    }
+
                 </div>
             </div>
         </div>
@@ -86,7 +94,7 @@
                console.log(comment);
               $('#comments').append(`
               <div class="mt-4 mx-4 d-flex">
-                     <img src="/img/${comment.image}" alt="" class="avatar rounded-circle float-start me-3">
+                     <img src="/img/${comment.avatar}" alt="" class="avatar rounded-circle float-start me-3">
                      <div>
                          <div class="mb-2 d-flex">
                              <h6 class="me-2">${comment.userName}</h6>
