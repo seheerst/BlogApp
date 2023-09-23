@@ -49,6 +49,7 @@ namespace BlogApp.Data.Concrete.EfCore
                         new Entity.Post
                         {
                             Title = "Sokaklar",
+                            Description = "seyahatler eğlencelidir",
                             Content = "seyahatler eğlencelidir",
                             Url = "sokaklar",
                             IsActive = true,
@@ -60,6 +61,7 @@ namespace BlogApp.Data.Concrete.EfCore
                             new Entity.Post
                             {
                                 Title = "Çini işçiliği",
+                                Description = "sanatla uğraşmak",
                                 Content = "sanatla uğraşmak",
                                 Url = "cini-isciliği",
                                 IsActive = true,
@@ -86,6 +88,7 @@ namespace BlogApp.Data.Concrete.EfCore
                             new Entity.Post
                             {
                                 Title = "Papağanlar",
+                                Description = "Hayvanlae alemi",
                                 Content = "Hayvanlae alemi",
                                 Url = "papağanlar",
                                 IsActive = true,
@@ -97,6 +100,7 @@ namespace BlogApp.Data.Concrete.EfCore
                     new Entity.Post
                         {
                             Title = "Work",
+                            Description = "pazartesi sendromu",
                             Content = "pazartesi sendromu",
                             Url = "work",
                             IsActive = true,
@@ -108,6 +112,7 @@ namespace BlogApp.Data.Concrete.EfCore
                     new Entity.Post
                         {
                             Title = "eğitim",
+                            Description = "aktivite",
                             Content = "aktivite",
                             Url = "eğitim",
                             IsActive = true,
@@ -120,6 +125,7 @@ namespace BlogApp.Data.Concrete.EfCore
                     new Entity.Post
                         {
                             Title = "aşçılık",
+                            Description = "aktivite",
                             Content = "yemek tarifleri",
                             Url = "aşçılık",
                             IsActive = true,
