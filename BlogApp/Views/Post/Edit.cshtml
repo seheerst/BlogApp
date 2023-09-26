@@ -1,0 +1,56 @@
+@model Post
+
+
+<div class="col-md-7 bg-white p-4" style="margin: auto">
+    <h4 class="mb-3 textColor" style="font-size: 25px">Gönderi Düzenle</h4>
+    <hr class="my-4">
+    <div class="px-4 pb-3">
+        <form method="post" action="Edit">
+            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+             <input type="hidden" asp-for="PostId" >
+            <div class="mb-3">
+                <label asp-for="Title" class="form-label textColor">Başlık</label>
+                <input type="text" asp-for="Title" class="form-control">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="Content" class="form-label textColor">İçerik</label>
+                <textarea asp-for="Content" class="form-control"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+
+            </div>
+            <div class="mb-3">
+                <label asp-for="Description" class="form-label textColor">Açıklama</label>
+                <input type="text" asp-for="Description" class="form-control">
+                <span asp-validation-for="Description" class="text-danger"></span>
+
+            </div>
+            <div class="mb-3">
+                <label asp-for="Url" class="form-label textColor">Url</label>
+                <input type="text" asp-for="Url" class="form-control">
+                <span asp-validation-for="Url" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="IsActive" class="form-label textColor">Aktiflik</label>
+                <input type="checkbox" asp-for="IsActive" class="form-check">
+                <span asp-validation-for="IsActive" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-outline-secondary mt-3" style="color: #762a88"><strong>Güncelle</strong></button>
+        </form>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tinymce/6.7.0/tinymce.min.js"
+            integrity="sha512-kGk8SWqEKL++Kd6+uNcBT7B8Lne94LjGEMqPS6rpDpeglJf3xpczBSSCmhSEmXfHTnQ7inRXXxKob4ZuJy3WSQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+    </script>
+    <script >
+    tinymce.init({
+        selector: '#Content'
+    })
+    </script>
+}
+
+
