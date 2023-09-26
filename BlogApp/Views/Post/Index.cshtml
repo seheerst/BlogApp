@@ -2,6 +2,19 @@
 
 <div class="row">
     <div class="col-lg-8">
+         <div class="bg-white p-4 mb-3">
+             <div>
+                 @if (User.Identity.IsAuthenticated)
+                 {
+                     <strong> <p>Sende eğlenceli anlarını bizimle paylaş! <a href="/Post/Create" class="textColor">Gönderi Ekle</a></p></strong>
+
+                 }
+                 else
+                 {
+                     <strong> <p>Paylaşım yapmak için giriş yap! <a href="/Users/Login" class="textColor">Giriş Yap</a></p></strong>
+                 }
+             </div>
+             </div>
         <div class="bg-white p-4">
             <h1 class="h4 mb-4">
                 Popüler Gönderiler
