@@ -5,6 +5,10 @@ namespace BlogApp.Models;
 
 public class CreateViewModel
 {
+    public int PostId { get; set; }
+
+    public bool IsActive { get; set; }
+    
     [Required]
     [DisplayName("Başlık")]
     public string? Title { get; set; }
