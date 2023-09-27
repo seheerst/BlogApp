@@ -2,6 +2,7 @@ using System.Security.Claims;
 using BlogApp.Data.Abstract;
 using BlogApp.Entity;
 using BlogApp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,25 +22,25 @@ namespace BlogApp.Controllers
 
         public async Task<IActionResult> Index(string? tag)
         {
-          
-            var posts = _postRepository.Posts;
-            
+            var posts = _postRepository.Posts.Where(i=> i.IsActive);
+
             if (!string.IsNullOrEmpty(tag))
             {
                 posts = posts.Where(x => x.Tags.Any(t => t.Url == tag));
             }
             return View(
-                new PostViewModel{Posts = await posts.ToListAsync()}
+                new PostViewModel { Posts = await posts.ToListAsync() }
             );
         }
 
         public async Task<IActionResult> Details(string? url)
         {
             return View(await _postRepository.Posts
-                .Include(x=> x.Tags)
-                .Include(x=> x.Comments).ThenInclude(
-                    x=>x.User)
-                .FirstOrDefaultAsync(p=> p.Url== url));
+                .Include(x=>x.User)
+                .Include(x => x.Tags)
+                .Include(x => x.Comments)
+                .ThenInclude(x => x.User)
+                .FirstOrDefaultAsync(p => p.Url == url));
         }
 
         public JsonResult AddComment(int PostId, string Text)
@@ -53,7 +54,6 @@ namespace BlogApp.Controllers
                 PublishedOn = DateTime.Now,
                 PostId = PostId,
                 UserId = int.Parse(userId ?? ""),
-                
             };
             _commentRepository.CreateComment(entity);
 
@@ -65,10 +65,9 @@ namespace BlogApp.Controllers
                 avatar
             });
         }
-
+        
         public IActionResult Create()
         {
-
             return View();
         }
 
