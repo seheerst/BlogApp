@@ -115,6 +115,11 @@ namespace BlogApp.Controllers
             return View(model);
         }
 
+        public IActionResult Profile(string username)
+        {
+            return View();
+        }
+
 
 
     }
