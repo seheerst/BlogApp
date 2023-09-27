@@ -1,4 +1,5 @@
-@model Post
+@using System.Security.Claims
+@model CreateViewModel
 
 
 <div class="col-md-7 bg-white p-4" style="margin: auto">
@@ -25,16 +26,20 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
 
             </div>
-            <div class="mb-3">
-                <label asp-for="Url" class="form-label textColor">Url</label>
-                <input type="text" asp-for="Url" class="form-control">
-                <span asp-validation-for="Url" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="IsActive" class="form-label textColor">Aktiflik</label>
-                <input type="checkbox" asp-for="IsActive" class="form-check">
-                <span asp-validation-for="IsActive" class="text-danger"></span>
-            </div>
+             <div class="mb-3">
+                 <label asp-for="PostUrl" class="form-label textColor">Url</label>
+                 <input type="text" asp-for="PostUrl" class="form-control">
+                 <span asp-validation-for="PostUrl" class="text-danger"></span>
+             </div>
+             @if (User.FindFirstValue(ClaimTypes.Role) == "admin")
+             {
+                 <div class="form-check mb-3">
+                     <label  asp-for="IsActive" class="form-check-label"></label>
+                     <input asp-for="IsActive" class="form-check-input">
+
+                 </div>
+             }
+        
             <button type="submit" class="btn btn-outline-secondary mt-3" style="color: #762a88"><strong>Güncelle</strong></button>
         </form>
     </div>
