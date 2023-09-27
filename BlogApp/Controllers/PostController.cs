@@ -94,6 +94,69 @@ namespace BlogApp.Controllers
             }
             return View(model);
         }
+        
+        public async Task<IActionResult> List()
+        {
+            var userId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier) ?? "");
+            var role = User.FindFirstValue(ClaimTypes.Role);
 
+            var posts = _postRepository.Posts;
+
+            if (string.IsNullOrEmpty(role))
+            {
+                posts = posts.Where(i => i.UserId == userId);
+            }
+            
+            return View(await posts.ToListAsync());
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id==null)
+            {
+                return NotFound();
+            }
+
+            var post =await _postRepository.Posts.FirstOrDefaultAsync(i => i.PostId == id);
+            if (post== null)
+            {
+                return NotFound();
+            }
+            
+            return View(new CreateViewModel
+            {
+                PostId = post.PostId,
+                Title = post.Title,
+                Description = post.Description,
+                Content = post.Content,
+                IsActive = post.IsActive,
+                PostUrl = post.Url
+            });
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(CreateViewModel post)
+        {
+            if (ModelState.IsValid)
+            {
+                var entityToUpdate = new Post
+                {
+                    PostId = post.PostId,
+                    Title = post.Title,
+                    Description = post.Description,
+                    Content = post.Content,
+                    Url = post.PostUrl,
+                };
+                
+                if(User.FindFirstValue(ClaimTypes.Role) == "admin")
+                {
+                    entityToUpdate.IsActive = post.IsActive;
+                }
+                
+                _postRepository.EditPost(entityToUpdate);
+                return RedirectToAction("List");
+            }
+            return View(post);
+        }
     }
 }
