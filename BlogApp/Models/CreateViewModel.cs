@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using BlogApp.Entity;
 
 namespace BlogApp.Models;
 
@@ -24,4 +25,6 @@ public class CreateViewModel
     [Required]
     [DisplayName("Url")]
     public string? PostUrl { get; set; }
+
+    public List<Tag> Tags { get; set; } = new();
 }
