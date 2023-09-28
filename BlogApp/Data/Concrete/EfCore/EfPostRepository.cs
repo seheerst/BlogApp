@@ -21,7 +21,7 @@ namespace BlogApp.Data.Concrete
             _context.SaveChanges();
         }
         
-        public void EditPost(Post post)
+        public void EditPost(Post post,int[] tagIds)
         {
             var entity = _context.Posts.FirstOrDefault(i => i.PostId == post.PostId);
 
@@ -32,6 +32,7 @@ namespace BlogApp.Data.Concrete
                 entity.Content = post.Content;
                 entity.Url = post.Url;
                 entity.IsActive = post.IsActive;
+                entity.Tags = _context.Tags.Where(tag => tagIds.Contains(tag.TagId)).ToList();
 
                 _context.SaveChanges();
             }
