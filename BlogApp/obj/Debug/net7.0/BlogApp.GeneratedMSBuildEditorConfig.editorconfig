@@ -16,12 +16,24 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\seherst\Desktop\BlogApp\blogapp
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/seherst/Desktop/BlogApp/blogapp/Views/Post/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/seherst/Desktop/BlogApp/blogapp/Views/Post/Details.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Users/seherst/Desktop/BlogApp/blogapp/Views/Post/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/seherst/Desktop/BlogApp/blogapp/Views/Post/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/seherst/Desktop/BlogApp/blogapp/Views/Post/List.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcUG9zdFxMaXN0LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/seherst/Desktop/BlogApp/blogapp/Views/Shared/Components/NewPosts/Default.cshtml]
@@ -34,6 +46,22 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/seherst/Desktop/BlogApp/blogapp/Views/Shared/_Layout.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/seherst/Desktop/BlogApp/blogapp/Views/Users/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/seherst/Desktop/BlogApp/blogapp/Views/Users/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcTG9nb3V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/seherst/Desktop/BlogApp/blogapp/Views/Users/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcUHJvZmlsZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/seherst/Desktop/BlogApp/blogapp/Views/Users/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlcnNcUmVnaXN0ZXIuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/seherst/Desktop/BlogApp/blogapp/Views/_ViewImports.cshtml]
