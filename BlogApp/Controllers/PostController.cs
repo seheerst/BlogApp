@@ -13,11 +13,13 @@ namespace BlogApp.Controllers
     {
         private IPostRepository _postRepository;
         private ICommentRepository _commentRepository;
+        private ITagRepository _tagRepository;
 
-        public PostController(IPostRepository postRepository, ICommentRepository commentRepository)
+        public PostController(IPostRepository postRepository, ICommentRepository commentRepository, ITagRepository tagRepository)
         {
             _postRepository = postRepository;
             _commentRepository = commentRepository;
+            _tagRepository = tagRepository;
         }
 
         public async Task<IActionResult> Index(string? tag)
@@ -117,11 +119,15 @@ namespace BlogApp.Controllers
                 return NotFound();
             }
 
-            var post =await _postRepository.Posts.FirstOrDefaultAsync(i => i.PostId == id);
+            var post =await _postRepository.Posts
+                .Include(i=>i.Tags)
+                .FirstOrDefaultAsync(i => i.PostId == id);
             if (post== null)
             {
                 return NotFound();
             }
+
+            ViewBag.Tags = await _tagRepository.Tags.ToListAsync();
             
             return View(new CreateViewModel
             {
@@ -130,11 +136,12 @@ namespace BlogApp.Controllers
                 Description = post.Description,
                 Content = post.Content,
                 IsActive = post.IsActive,
-                PostUrl = post.Url
+                PostUrl = post.Url,
+                Tags = post.Tags
             });
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(CreateViewModel post)
+        public async Task<IActionResult> Edit(CreateViewModel post, int[] tagIds)
         {
             if (ModelState.IsValid)
             {
@@ -145,6 +152,7 @@ namespace BlogApp.Controllers
                     Description = post.Description,
                     Content = post.Content,
                     Url = post.PostUrl,
+                    
                 };
                 
                 if(User.FindFirstValue(ClaimTypes.Role) == "admin")
@@ -152,7 +160,7 @@ namespace BlogApp.Controllers
                     entityToUpdate.IsActive = post.IsActive;
                 }
                 
-                _postRepository.EditPost(entityToUpdate);
+                _postRepository.EditPost(entityToUpdate, tagIds);
                 return RedirectToAction("List");
             }
             return View(post);
