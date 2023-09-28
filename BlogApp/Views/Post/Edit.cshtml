@@ -2,48 +2,71 @@
 @model CreateViewModel
 
 
-<div class="col-md-7 bg-white p-4" style="margin: auto">
-    <h4 class="mb-3 textColor" style="font-size: 25px">Gönderi Düzenle</h4>
-    <hr class="my-4">
-    <div class="px-4 pb-3">
-        <form method="post" action="Edit">
-            <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-             <input type="hidden" asp-for="PostId" >
-            <div class="mb-3">
-                <label asp-for="Title" class="form-label textColor">Başlık</label>
-                <input type="text" asp-for="Title" class="form-control">
-                <span asp-validation-for="Title" class="text-danger"></span>
-            </div>
-            <div class="mb-3">
-                <label asp-for="Content" class="form-label textColor">İçerik</label>
-                <textarea asp-for="Content" class="form-control"></textarea>
-                <span asp-validation-for="Content" class="text-danger"></span>
+<form method="post" action="Edit">
+    <div class="col-md-12 " style="margin: auto">
+        <h4 class="mb-3 textColor" style="font-size: 25px">Gönderi Düzenle</h4>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col-8 ">
+                <div class="bg-white p-4 mx-3">
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <input type="hidden" asp-for="PostId">
+                    <div class="mb-3">
+                        <label asp-for="Title" class="form-label textColor">Başlık</label>
+                        <input type="text" asp-for="Title" class="form-control">
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Content" class="form-label textColor">İçerik</label>
+                        <textarea asp-for="Content" class="form-control"></textarea>
+                        <span asp-validation-for="Content" class="text-danger"></span>
 
-            </div>
-            <div class="mb-3">
-                <label asp-for="Description" class="form-label textColor">Açıklama</label>
-                <input type="text" asp-for="Description" class="form-control">
-                <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label textColor">Açıklama</label>
+                        <input type="text" asp-for="Description" class="form-control">
+                        <span asp-validation-for="Description" class="text-danger"></span>
 
-            </div>
-             <div class="mb-3">
-                 <label asp-for="PostUrl" class="form-label textColor">Url</label>
-                 <input type="text" asp-for="PostUrl" class="form-control">
-                 <span asp-validation-for="PostUrl" class="text-danger"></span>
-             </div>
-             @if (User.FindFirstValue(ClaimTypes.Role) == "admin")
-             {
-                 <div class="form-check mb-3">
-                     <label  asp-for="IsActive" class="form-check-label"></label>
-                     <input asp-for="IsActive" class="form-check-input">
+                    </div>
+                    <div class="mb-3">
+                        <label asp-for="PostUrl" class="form-label textColor">Url</label>
+                        <input type="text" asp-for="PostUrl" class="form-control">
+                        <span asp-validation-for="PostUrl" class="text-danger"></span>
+                    </div>
+                    @if (User.FindFirstValue(ClaimTypes.Role) == "admin")
+                    {
+                        <div class="form-check mb-3">
+                            <label asp-for="IsActive" class="form-check-label"></label>
+                            <input asp-for="IsActive" class="form-check-input">
 
-                 </div>
-             }
-        
-            <button type="submit" class="btn btn-outline-secondary mt-3" style="color: #762a88"><strong>Güncelle</strong></button>
-        </form>
+                        </div>
+                    }
+
+                    <button type="submit" class="btn btn-outline-secondary mt-3" style="color: #762a88">
+                        <strong>Güncelle</strong>
+                    </button>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="bg-white p-2">
+                    <h6 class="mb-3 textColor" style="font-size: 25px">Etiketler</h6>
+                    @foreach (var tag in ViewBag.Tags)
+                    {
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="tagIds" value="@tag.TagId" id="tag_@tag.TagId"
+                                   @(Model.Tags.Any(i => i.TagId == tag.TagId) ? "checked" : "")>
+                            <label class="form-check-label" for="tag_@tag.TagId">
+                                @tag.Text
+                            </label>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+
     </div>
-</div>
+</form>
 
 @section Scripts
 {
@@ -57,5 +80,3 @@
     })
     </script>
 }
-
-
